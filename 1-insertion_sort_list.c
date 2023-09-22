@@ -7,10 +7,9 @@
 /**
  * insertion_sort_list - sorts a doubly linked list of integers
  * in ascending order
- * 
+ *
  * Description: You are not allowed to modify the integer n of a node.
  * You have to swap the nodes themselves.
-
  *
  * @list: list to be sorted
 */
@@ -40,19 +39,23 @@ void insertion_sort_list(listint_t **list)
 			{
 				if (prev->next == curr)
 					break;
-				else
-				{
-					insert_after_prev(&curr, &prev);
-					print_list(*list);
-					break;
-				}
+
+				insert_after_prev(&curr, &prev);
+				print_list(*list);
+				break;
 			}
 		}
 	}
 }
 
-
-void insert_at_beginning(listint_t **list, listint_t **curr, listint_t **prev)
+/**
+ * insert_at_beginning - only insert node at first and shift
+ *
+ * @list: list is being sorted
+ * @curr: the node to be inserted at first
+ * @first: first node at list
+*/
+void insert_at_beginning(listint_t **list, listint_t **curr, listint_t **first)
 {
 	listint_t *temp = *curr;
 
@@ -65,12 +68,18 @@ void insert_at_beginning(listint_t **list, listint_t **curr, listint_t **prev)
 	}
 	*curr = temp->prev;
 
-	(*prev)->prev = temp;
-	temp->next = *prev;
+	(*first)->prev = temp;
+	temp->next = *first;
 	temp->prev = NULL;
 	*list = temp;
 }
 
+/**
+ * insert_after_prev - insert node at specific location in list and shift
+ *
+ * @curr: the node to be inserted after prev node
+ * @prev: node to insert curr after
+*/
 void insert_after_prev(listint_t **curr, listint_t **prev)
 {
 	listint_t *temp = *curr;
