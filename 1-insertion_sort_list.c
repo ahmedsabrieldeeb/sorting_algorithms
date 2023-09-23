@@ -15,86 +15,36 @@
 */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *curr, *prev;
+	listint_t *curr, *prev, *curr_cp, *prev_cp;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
-	for (curr = (*list)->next; curr != NULL; curr = curr->next)
+	curr = (*list)->next;
+	while (curr != NULL)
 	{
-		for (prev = curr->prev; prev != NULL; prev = prev->prev)
+		prev = curr->prev;
+		curr_cp = curr;
+		prev_cp = prev;
+		while (prev_cp != NULL && curr_cp->n < prev_cp->n)
 		{
-			if (curr->n < prev->n)
-			{
-				if (prev->prev == NULL)
-				{
-					insert_at_beginning(list, &curr, &prev);
-					print_list(*list);
-					break;
-				}
-				else
-					continue;
-			}
-			else
-			{
-				if (prev->next == curr)
-					break;
+			/*swap two elements*/
+			curr_cp->prev = prev_cp->prev;
+			prev_cp->next = curr_cp->next;
 
-				insert_after_prev(&curr, &prev);
-				print_list(*list);
-				break;
-			}
+			if (curr_cp->next != NULL)
+				curr_cp->next->prev = prev_cp;
+			if (prev_cp->prev != NULL)
+				prev_cp->prev->next = curr_cp;
+
+			curr_cp->next = prev_cp;
+			prev_cp->prev = curr_cp;
+
+			prev_cp = curr_cp->prev;
+			if (prev_cp == NULL)
+				*list = curr_cp;
+			print_list(*list);
 		}
+		curr = curr->next;
 	}
-}
-
-/**
- * insert_at_beginning - only insert node at first and shift
- *
- * @list: list is being sorted
- * @curr: the node to be inserted at first
- * @first: first node at list
-*/
-void insert_at_beginning(listint_t **list, listint_t **curr, listint_t **first)
-{
-	listint_t *temp = *curr;
-
-	if (temp->next == NULL)
-		temp->prev->next = NULL;
-	else
-	{
-		temp->prev->next = temp->next;
-		temp->next->prev = temp->prev;
-	}
-	*curr = temp->prev;
-
-	(*first)->prev = temp;
-	temp->next = *first;
-	temp->prev = NULL;
-	*list = temp;
-}
-
-/**
- * insert_after_prev - insert node at specific location in list and shift
- *
- * @curr: the node to be inserted after prev node
- * @prev: node to insert curr after
-*/
-void insert_after_prev(listint_t **curr, listint_t **prev)
-{
-	listint_t *temp = *curr;
-
-	if (temp->next == NULL)
-		temp->prev->next = NULL;
-	else
-	{
-		temp->prev->next = temp->next;
-		temp->next->prev = temp->prev;
-	}
-	*curr = temp->prev;
-
-	(*prev)->next->prev = temp;
-	temp->next = (*prev)->next;
-	(*prev)->next = temp;
-	temp->prev = *prev;
 }
