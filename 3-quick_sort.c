@@ -69,12 +69,18 @@ ssize_t lomute_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
 		if (arr[idx] < arr[pivot])
 		{
 			start++;
-			swap((arr + start), (arr + idx));
-			print_array(arr, size);
+			if (start != idx)
+			{
+				swap((arr + start), (arr + idx));
+				print_array(arr, size);
+			}
 		}
 	}
-	swap((arr + start + 1), (arr + up));
-	print_array(arr, size);
+	if ((start + 1) != up)
+	{
+		swap((arr + start + 1), (arr + up));
+		print_array(arr, size);
+	}
 	return (start + 1);
 }
 
