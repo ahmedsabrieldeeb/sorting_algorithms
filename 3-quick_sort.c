@@ -66,7 +66,7 @@ ssize_t lomute_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
 
 	for (idx = lb; idx <= up - 1; idx++)
 	{
-		if (arr[idx] < arr[pivot])
+		if (arr[idx] <= arr[pivot])
 		{
 			start++;
 			if (start != idx)
