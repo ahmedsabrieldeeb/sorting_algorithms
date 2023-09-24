@@ -5,7 +5,7 @@
 
 
 void recursive_qsort(int *, ssize_t, ssize_t, size_t);
-size_t lomute_partition(int *, ssize_t, ssize_t, size_t);
+ssize_t lomute_partition(int *, ssize_t, ssize_t, size_t);
 void swap(int *, int *);
 
 /**
@@ -13,8 +13,8 @@ void swap(int *, int *);
  * in ascending order using the Quick sort algorithm
  *
  * Description: implemented using Lomuto partitioning scheme
- * 				means that the pivot element is the last one
- * 
+ * means that the pivot element is the last one
+ *
  * @array: array to be sorted
  * @size: number of elements in array
 */
@@ -27,7 +27,14 @@ void quick_sort(int *array, size_t size)
 	recursive_qsort(array, 0, size - 1, size);
 }
 
-
+/**
+ * recursive_qsort -  entry point to our alog
+ *
+ * @arr: array to be sorted
+ * @lower: start index of array to be sorted
+ * @upper: end index of array to be sorted
+ * @size: size of array for printing purposes
+*/
 void recursive_qsort(int *arr, ssize_t lower, ssize_t upper, size_t size)
 {
 	ssize_t correct_pivot;
@@ -40,7 +47,17 @@ void recursive_qsort(int *arr, ssize_t lower, ssize_t upper, size_t size)
 	}
 }
 
-size_t lomute_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
+/**
+ * lomute_partition -  partitioning the array
+ *
+ * @arr: array to be partitioned
+ * @lb: start index of array to be partitioned
+ * @up: end index of array to be partitioned
+ * @size: size of array for printing purposes
+ *
+ * Return: returns the correct position of pivot element
+*/
+ssize_t lomute_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
 {
 	ssize_t pivot, start, idx;
 
@@ -61,6 +78,12 @@ size_t lomute_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
 	return (start + 1);
 }
 
+/**
+ * swap - swapping two elementes
+ *
+ * @first: first element
+ * @second: second element
+*/
 void swap(int *first, int *second)
 {
 	int temp;
