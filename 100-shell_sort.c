@@ -4,25 +4,25 @@
   * @array: array to be sorted
   * @size: size of array
   */
-void shell_sort(int *array, size_t size)
+void shell_sort(int *arr, size_t size)
 {
-	size_t knuth, i, i2;
+	size_t k, i, j;
 	int tmp;
 
-	knuth = 1;
-	while (knuth < size)
-		knuth = (knuth * 3) + 1;
-	knuth = (knuth - 1) / 3;
-	while (knuth > 0)
+	k = 1;
+	while (k < size)
+		k = (k * 3) + 1;
+	k = (k - 1) / 3;
+	while (k > 0)
 	{
-		for (i = knuth; i < size; i++)
+		for (i = k; i < size; i++)
 		{
-			tmp = array[i];
-			for (i2 = i; i2 >= knuth && array[i2 - knuth] > tmp; i2 -= knuth)
-				array[i2] = array[i2 - knuth];
-			array[i2] = tmp;
+			tmp = arr[i];
+			for (j = i; j >= k && array[j - k] > tmp; j -= k)
+				arr[i2] = arr[j - k];
+			arr[i2] = tmp;
 		}
-		knuth = (knuth - 1) / 3;
-		print_array(array, size);
+		k = (k - 1) / 3;
+		print_array(arr, size);
 	}
 }
