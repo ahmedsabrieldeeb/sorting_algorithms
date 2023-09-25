@@ -29,10 +29,11 @@ void shell_sort(int *arr, size_t size)
 
 			arr[j] = x;
 		}
-
+		num = (num - 1) / 3;
+		
 		print_array(arr, size);
 		printf("\n");
 
-		num = (num - 1) / 3;
+
 	}
 }
