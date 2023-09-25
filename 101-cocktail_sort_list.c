@@ -2,9 +2,8 @@
 #include "sort.h"
 
 /**
- * cocktail_sort_list - Sorts a doubly linked list of integers
- *                     in ascending order using Cocktail shaker sort algorithm
- * @list: Double pointer to the head of the list
+ * cocktail_sort_list - Sorts a doubly linked list
+ * @list: Double pointer
  */
 void cocktail_sort_list(listint_t **list)
 {
@@ -16,11 +15,11 @@ void cocktail_sort_list(listint_t **list)
 
     do {
         swap = 0;
-        for (node = *list; node->next != NULL; node = node->next)
+        for (nn = *list; nn->next != NULL; nn = nn->next)
         {
-            if (node->n > node->next->n)
+            if (nn->n > nn->next->n)
             {
-                swap_nodes(list, node, node->next);
+                swap_nodes(list, nn, nn->next);
                 print_list(*list);
                 swap = 1;
             }
@@ -30,11 +29,11 @@ void cocktail_sort_list(listint_t **list)
             break;
 
         swap = 0;
-        for (node = node->prev; node->prev != NULL; node = node->prev)
+        for (nn = nn->prev; nn->prev != NULL; nn = nn->prev)
         {
-            if (node->n < node->prev->n)
+            if (nn->n < nn->prev->n)
             {
-                swap_nodes(list, node->prev, node);
+                swap_nodes(list, nn->prev, nn);
                 print_list(*list);
                 swap = 1;
             }
