@@ -61,7 +61,7 @@ ssize_t hoare_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
 {
 	ssize_t start, end, pivot;
 
-	pivot= up;
+	pivot = up;
 	end = up;
 	start = lb;
 
@@ -70,7 +70,7 @@ ssize_t hoare_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
 		while (arr[start] < arr[pivot])
 			start++;
 	
-		while (arr[end] >= arr[pivot])
+		while (arr[end] > arr[pivot])
 			end--;
 
 		if (start < end)
@@ -80,8 +80,6 @@ ssize_t hoare_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
 				swap((arr + start), (arr + end));
 				print_array(arr, size);
 			}
-			start++;
-			end--;
 		}
 	}
 	if (arr[start] != arr[pivot])
