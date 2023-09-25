@@ -8,58 +8,58 @@
  */
 void cocktail_sort_list(listint_t **list)
 {
-    int swapped;
+    int swap;
     listint_t *node;
 
     if (list == NULL || *list == NULL || (*list)->next == NULL)
         return;
 
     do {
-        swapped = 0;
+        swap = 0;
         for (node = *list; node->next != NULL; node = node->next)
         {
             if (node->n > node->next->n)
             {
                 swap_nodes(list, node, node->next);
                 print_list(*list);
-                swapped = 1;
+                swap = 1;
             }
         }
 
-        if (!swapped)
+        if (!swap)
             break;
 
-        swapped = 0;
+        swap = 0;
         for (node = node->prev; node->prev != NULL; node = node->prev)
         {
             if (node->n < node->prev->n)
             {
                 swap_nodes(list, node->prev, node);
                 print_list(*list);
-                swapped = 1;
+                swap = 1;
             }
         }
-    } while (swapped);
+    } while (swap);
 }
 
 /**
  * swap_nodes - Swaps two nodes in a doubly linked list
  * @list: Double pointer to the head of the list
- * @node1: First node to swap
- * @node2: Second node to swap
+ * @n1: First node to swap
+ * @n2: Second node to swap
  */
-void swap_nodes(listint_t **list, listint_t *node1, listint_t *node2)
+void swap_nodes(listint_t **list, listint_t *n1, listint_t *n2)
 {
-    if (node1->prev != NULL)
-        node1->prev->next = node2;
+    if (n1->prev != NULL)
+        n1->prev->next = n2;
     else
-        *list = node2;
+        *list = n2;
 
-    if (node2->next != NULL)
-        node2->next->prev = node1;
+    if (n2->next != NULL)
+        n2->next->prev = n1;
 
-    node1->next = node2->next;
-    node2->prev = node1->prev;
-    node1->prev = node2;
-    node2->next = node1;
+    n1->next = n2->next;
+    n2->prev = n1->prev;
+    n1->prev = n2;
+    n2->next = n1;
 }
