@@ -1,2 +1,5 @@
-build/
-more/
+# folder of development (binaries and testing files)
+build
+
+# containing more algorithms not implemented yet
+more
