@@ -43,7 +43,7 @@ void recursive_qsort(int *arr, ssize_t lower, ssize_t upper, size_t size)
 	{
 		correct_pivot = hoare_partition(arr, lower, upper, size);
 		recursive_qsort(arr, lower, correct_pivot - 1, size);
-		recursive_qsort(arr, correct_pivot + 1, upper, size);
+		recursive_qsort(arr, correct_pivot, upper, size);
 	}
 }
 
@@ -61,31 +61,25 @@ ssize_t hoare_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
 {
 	ssize_t start, end, pivot;
 
-	pivot = up;
-	end = up;
-	start = lb;
+	pivot = arr[up];
+	end = up + 1;
+	start = lb - 1;
 
 	while (start < end)
 	{
-		while (arr[start] < arr[pivot])
-			start++;
+		do	{start++;}
+		while (arr[start] < pivot);
+		
 	
-		while (arr[end] > arr[pivot])
-			end--;
+		do {end--;}
+		while (arr[end] > pivot);
+		
 
 		if (start < end)
 		{
-			if (arr[start] != arr[end])
-			{
-				swap((arr + start), (arr + end));
-				print_array(arr, size);
-			}
+			swap((arr + start), (arr + end));
+			print_array(arr, size);
 		}
-	}
-	if (arr[start] != arr[pivot])
-	{
-		swap((arr + start), (arr + pivot));
-		print_array(arr, size);
 	}
 	return (start);
 }
