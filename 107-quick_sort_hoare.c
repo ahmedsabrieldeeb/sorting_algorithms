@@ -67,13 +67,13 @@ ssize_t hoare_partition(int *arr, ssize_t lb, ssize_t up, size_t size)
 
 	while (start < end)
 	{
-		do	{start++;}
-		while (arr[start] < pivot);
-		
-	
-		do {end--;}
-		while (arr[end] > pivot);
-		
+		do	{start++;
+		} while (arr[start] < pivot);
+
+
+		do {end--;
+		} while (arr[end] > pivot);
+
 
 		if (start < end)
 		{
