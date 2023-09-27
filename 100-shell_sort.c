@@ -25,6 +25,9 @@ void shell_sort(int *array, size_t size)
 {
 	size_t gap, idx, temp;
 
+	if (array == NULL || size < 2)
+		return;
+
 	/* getting maximum value of gap to start algo with */
 	gap = 1;
 	while ((gap * 3 + 1) <= size)
