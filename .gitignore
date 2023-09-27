@@ -3,3 +3,6 @@ build
 
 # containing more algorithms not implemented yet
 more
+
+# related to my IDE
+.vscode
