@@ -15,11 +15,11 @@
  *
  * --> This array is of size k + 1 where 'k' is the largest number in array
  * ... so, k is considered given
- * 
+ *
  * Notes:
  * --> we could improve the algo by minimizing countArray to have only
  * ... size of range not to start from 0 always (see below)
- * 
+ *
  * --> Could we improve the algo by directly update input array
  * ... without needing to create a copied sortedArray??
  *
@@ -57,7 +57,7 @@ void counting_sort(int *array, size_t size)
 
 	/* building sortedArray to store elements in sorted way */
 	sortedArray = (int *)malloc(sizeof(int) * size);
-	for (i = size - 1; (int)i >= 0; i--) /* starting from end to maintain stability */
+	for (i = size - 1; (int)i >= 0; i--) /* starting from end for stability */
 		sortedArray[--countArray[array[i]]] = array[i];
 
 	/* copying sortedArray to input array */
